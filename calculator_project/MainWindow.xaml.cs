@@ -25,5 +25,10 @@ namespace calculator_project
             WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
             InitializeComponent();
         }
+
+        public void clear()
+        {
+            history.Text = string.Empty;
+        }
     }
 }
