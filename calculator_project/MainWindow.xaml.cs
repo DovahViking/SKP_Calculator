@@ -41,7 +41,7 @@ namespace calculator_project
             plus
         }
 
-        public void btn_number_Click(object sender, RoutedEventArgs e)
+        public void btn_number(object sender, RoutedEventArgs e)
         {
             Button button = (Button)sender;
 
@@ -50,17 +50,17 @@ namespace calculator_project
                 history.Text = button.Content.ToString();
                 finished = false;
             }
-            else if (history.Text == "0")
+            else if (history.Text == "")
             {
                 history.Text = button.Content.ToString();
             }
             else
             {
-                //history.Text = history.Text;
+                history.Text = history.Text + button.Content.ToString();
             }
         }
 
-        public void btn_operator_Click(object sender, RoutedEventArgs e)
+        public void btn_operator(object sender, RoutedEventArgs e)
         {
             Button button = (Button)sender;
 
@@ -90,6 +90,70 @@ namespace calculator_project
                     history.Text = string.Empty;
                     break;
                 case "=":
+                    switch (operation)
+                    {
+                        case Operations.multiply:
+                            if (finished)
+                            {
+                                /*
+                                 * Convert.ToInt64(history.Text)
+                                 * history.Text *= second
+                                 */
+                                // NOT WORKING
+                            }
+                            else
+                            {
+                                second = Convert.ToInt64(history.Text);
+                                result = first * second;
+                                history.Text = Convert.ToString(result);
+                                finished = true;
+                            }
+                            break;
+                        case Operations.divide:
+                            if (finished)
+                            {
+                                // same thing as above / second
+                            }
+                            else
+                            {
+                                second = Convert.ToInt64(history.Text);
+                                result = first / second;
+                                history.Text = Convert.ToString(result);
+                                finished = true;
+                            }
+                            break;
+                        case Operations.plus:
+                            {
+                                if (finished)
+                                {
+                                    // same thing as above + second
+                                }
+                                else
+                                {
+                                    second = Convert.ToInt64(history.Text);
+                                    result = first + second;
+                                    history.Text = Convert.ToString(result);
+                                    finished = true;
+                                }
+                            }
+                            break;
+                        case Operations.minus:
+                            {
+                                if (finished)
+                                {
+                                    // same thing as above - second
+                                }
+                                else
+                                {
+                                    second = Convert.ToInt64(history.Text);
+                                    result = first - second;
+                                    history.Text = Convert.ToString(result);
+                                    finished = true;
+                                }
+                            }
+                            break;
+                    }
+                    break;
 
             }
         }
